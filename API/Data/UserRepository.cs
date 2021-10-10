@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using API.Interfaces;
 using API.Entities;
-using API.Data;
 using API.DTOs;
 using AutoMapper.QueryableExtensions;
 

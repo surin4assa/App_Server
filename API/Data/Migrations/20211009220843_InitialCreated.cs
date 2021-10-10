@@ -24,6 +24,7 @@ namespace API.Data.Migrations
                     Introduction = table.Column<string>(type: "TEXT", nullable: true),
                     LookingFor = table.Column<string>(type: "TEXT", nullable: true),
                     Interests = table.Column<string>(type: "TEXT", nullable: true),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
                     Country = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
