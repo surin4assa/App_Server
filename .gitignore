@@ -458,3 +458,5 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 appsettings.json
+.vscode/settings.json
+DatingAppAndAngular
