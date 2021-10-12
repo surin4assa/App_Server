@@ -64,6 +64,7 @@ namespace API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // order matter in this scope
+
             // if (env.IsDevelopment())
             // {
             //     app.UseDeveloperExceptionPage();
