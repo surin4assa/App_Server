@@ -16,7 +16,7 @@ namespace API.Controllers
 {
     [Authorize]
     public class UsersController : BaseApiController
-    {       
+    {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
@@ -58,7 +58,7 @@ namespace API.Controllers
             _mapper.Map(memberUpdateDto, user);
 
             _userRepository.Update(user);
-             
+
             if (await _userRepository.SaveAllAsync()) return NoContent();
 
             return BadRequest("Failed to update user");
