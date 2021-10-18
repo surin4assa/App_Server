@@ -37,19 +37,6 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "attach",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "attach",
-                "run",
-                "${workspaceFolder}/API/API.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
         }
     ]
 }
