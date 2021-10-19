@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using API.Extensions;
 using API.Entities;
 using API.Helpers;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Controllers
 {
@@ -21,9 +22,11 @@ namespace API.Controllers
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UsersController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService)
+        public UsersController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService, UserManager<AppUser> userManager)
         {
+            _userManager = userManager;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _photoService = photoService;
@@ -138,6 +141,21 @@ namespace API.Controllers
             if (await _unitOfWork.Complete()) return Ok();
 
             return BadRequest("Failed to delete the photo");
+        }
+
+        [HttpPut("change-password")]
+        public async Task<ActionResult> ChangePassword([FromBody]UserPasswordDto userPasswordDto)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            if (user.NormalizedUserName == userPasswordDto.Username.ToUpper() && user.NormalizedEmail == userPasswordDto.Email.ToUpper())
+            {
+                var result = await _userManager.ChangePasswordAsync(user, userPasswordDto.CurrentPassword, userPasswordDto.NewPassword);
+
+                if(result.Succeeded) return Ok("Success");
+            } 
+            
+            return BadRequest("Failed to update password. Check if email or current password are correct.");
         }
     }
 }

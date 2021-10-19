@@ -89,6 +89,9 @@ namespace API.Data.Migrations
                     b.Property<string>("Introduction")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsOnline")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("KnownAs")
                         .HasColumnType("text");
 
@@ -122,6 +125,9 @@ namespace API.Data.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<string>("State")
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")

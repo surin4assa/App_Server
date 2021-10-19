@@ -72,7 +72,7 @@ namespace API.Controllers
 			var username = User.GetUsername();
 			var message = await _unitOfWork.MessageRepository.GetMessage(id);
 			if (message.SenderUsername != username && message.RecipientUsername != username)
-				return Unauthorized();
+				return Unauthorized("You are not authorized");
 
 			if (message.SenderUsername == username) message.SenderDeleted = true;
 

@@ -1,8 +1,4 @@
-using System.Text;
-using System.Security.Cryptography;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
@@ -19,7 +15,6 @@ namespace API.Data.Migrations
 
             var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
-            if (users == null) return;
 
             var roles = new List<AppRole>
             {
@@ -33,11 +28,14 @@ namespace API.Data.Migrations
                 await roleManager.CreateAsync(role);
             };
 
-            foreach (var user in users)
+            if (users != null)
             {
-                user.UserName = user.UserName.ToLower();
-                await userManager.CreateAsync(user, "Pa$$w0rd");
-                await userManager.AddToRoleAsync(user, "Member");
+                foreach (var user in users)
+                {
+                    user.UserName = user.UserName.ToLower();
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                    await userManager.AddToRoleAsync(user, "Member");
+                }
             }
 
             var admin = new AppUser

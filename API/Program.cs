@@ -9,6 +9,7 @@ using API.Data;
 using API.Data.Migrations;
 using Microsoft.AspNetCore.Identity;
 using API.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace API
 {

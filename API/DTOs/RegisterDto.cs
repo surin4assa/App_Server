@@ -1,7 +1,5 @@
+using System.Diagnostics.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace API.DTOs
@@ -11,10 +9,10 @@ namespace API.DTOs
         [Required]
         public string Username { get; set; }
 
-        [Required] 
+        [Required]
         public string KnownAs { get; set; }
 
-        [Required] 
+        [Required]
         public string Gender { get; set; }
 
         [Required] 
@@ -22,12 +20,18 @@ namespace API.DTOs
 
         [Required] 
         public string City { get; set; }
-
-        [Required] 
+        [Required]     
+        public string State { get; set; }
+        [Required]
         public string Country { get; set; }
 
         [Required]
         [StringLength(24, MinimumLength = 8)]
         public string Password { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        
+        
     }
 }
