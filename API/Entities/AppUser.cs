@@ -11,7 +11,6 @@ namespace API.Entities
         public string Gender { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public DateTime LastActive { get; set; } = DateTime.UtcNow;
-        public bool IsOnline { get; set; } = false;
         public string Introduction { get; set; }
         public string LookingFor { get; set; }
         public string Interests { get; set; }
